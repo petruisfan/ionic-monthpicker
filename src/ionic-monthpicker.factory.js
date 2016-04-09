@@ -3,40 +3,43 @@
     'use strict';
 
     app.factory("MonthPicker", ["$rootScope", "$ionicPopup", function($rootScope, $ionicPopup) {
-
-        var _config = {};
+        var scope;
 
         return {
-            config: function(options) {
-                _config.minMonth = options.minMonth;
-                _config.maxMonth = options.maxMonth;
-                _config.monthLabels = options.monthLabels;
+            init: function(options) {
+                scope = $rootScope.$new();
+
+                scope.minMonth = options.minMonth;
+                scope.maxMonth = options.maxMonth;
+                scope.monthLabels = options.monthLabels;
+                scope.title = options.title || "Select month";
+                scope.cancelText = options.cancelText || "Cancel";
+
+                scope.selection = {};
+
+                scope.selection.year = 2016;
+
+                scope.changeYear = function(index) {
+                    scope.selection.year += index;
+                };
             },
             show: function(callback) {
-                var scope = $rootScope.$new();
-                scope.data = {};
+                scope.selectMonth = function(index) {
+                    scope.selection.month = index;
+                    popup.close();
+                };
 
-                $ionicPopup.show({
+                var popup = $ionicPopup.show({
                     templateUrl: "monthpicker.html",
-                    title: 'Enter Wi-Fi Password',
-                    subTitle: 'Please use normal things',
+                    title: scope.title,
                     scope: scope,
                     buttons: [
-                        { text: 'Cancel' },
-                        {
-                            text: '<b>Save</b>',
-                            type: 'button-positive',
-                            onTap: function(e) {
-                                if (!scope.data.wifi) {
-                                    e.preventDefault();
-                                } else {
-                                    return scope.data.wifi;
-                                }
-                            }
-                        }
+                        { text: scope.cancelText }
                     ]
-                }).then(function(res) {
-                    callback(res)
+                });
+
+                popup.then(function(res) {
+                    callback(scope.selection);
                 });
             }
         };
