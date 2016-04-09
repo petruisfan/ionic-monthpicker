@@ -47,11 +47,12 @@
                  * @returns {boolean}
                  */
                 scope.isValidMonth = function(index) {
-                    var result = (index < scope.minMonthIndex && scope.minYear == scope.selection.year) ||
+                    var invalid = (index < scope.minMonthIndex && scope.selection.year == scope.minYear) ||
                         ( index > scope.maxMonthIndex && scope.selection.year == scope.maxYear) ||
                         scope.selection.year < scope.minYear ||
                         scope.selection.year > scope.maxYear;
-                    return ! result;
+                    console.log(invalid);
+                    return ! invalid;
                 }
             },
             /**
