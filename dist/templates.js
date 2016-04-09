@@ -1,0 +1,1 @@
+angular.module("ionic-monthpicker").run(["$templateCache", function($templateCache) {$templateCache.put("monthpicker.html","<div><input ng-model=\"data.wifi\" type=\"text\" placeholder=\"Text\"></div>");}]);
