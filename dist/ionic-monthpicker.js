@@ -14,24 +14,38 @@
             init: function(options) {
                 scope = $rootScope.$new();
 
-                scope.minMonth = options.minMonth;
-                scope.maxMonth = options.maxMonth;
+                scope.minMonthIndex = options.minMonthIndex || 0;
+                scope.minYear = options.minYear || new Date().getFullYear();
+                scope.maxMonthIndex = options.maxMonthIndex || new Date().getMonth();
+                scope.maxYear = options.maxYear || new Date().getFullYear();
+
                 scope.monthLabels = options.monthLabels;
                 scope.title = options.title || "Select month";
                 scope.cancelText = options.cancelText || "Cancel";
 
                 scope.selection = {};
 
-                scope.selection.year = 2016;
+                scope.selection.year = scope.maxYear;
 
                 scope.changeYear = function(index) {
                     scope.selection.year += index;
                 };
+
+                scope.isValidMonth = function(index) {
+                    var result = (index < scope.minMonthIndex && scope.minYear == scope.selection.year) ||
+                        ( index > scope.maxMonthIndex && scope.selection.year == scope.maxYear) ||
+                        scope.selection.year < scope.minYear ||
+                        scope.selection.year > scope.maxYear;
+                    return ! result;
+                }
             },
             show: function(callback) {
                 scope.selectMonth = function(index) {
-                    scope.selection.month = index;
-                    popup.close();
+                    if (scope.isValidMonth(index)) {
+                        console.log("valid");
+                        scope.selection.month = index;
+                        popup.close();
+                    }
                 };
 
                 var popup = $ionicPopup.show({
@@ -39,7 +53,10 @@
                     title: scope.title,
                     scope: scope,
                     buttons: [
-                        { text: scope.cancelText }
+                        {
+                            text: scope.cancelText,
+                            type: 'button-assertive'
+                        }
                     ]
                 });
 
@@ -51,4 +68,4 @@
     }]);
 
 }(angular.module("ionic-monthpicker")));
-angular.module("ionic-monthpicker").run(["$templateCache", function($templateCache) {$templateCache.put("monthpicker.html","<div><div class=\"row\"><div class=\"col col-25\" ng-click=\"changeYear(-1)\"><i class=\"ion ion-chevron-left\"></i></div><div class=\"col col-50 text-center\"><strong>{{ selection.year }}</strong></div><div class=\"col col-25 text-right\" ng-click=\"changeYear(1)\"><i class=\"ion ion-chevron-right\"></i></div></div><div ng-repeat=\"month in monthLabels\"><div class=\"row\" ng-if=\"$index % 3 == 0\"><div class=\"col col-33 text-center\" ng-click=\"selectMonth($index)\">{{ monthLabels[$index] }}</div><div class=\"col col-33 text-center\" ng-click=\"selectMonth($index + 1)\">{{ monthLabels[$index + 1] }}</div><div class=\"col col-33 text-center\" ng-click=\"selectMonth($index + 2)\">{{ monthLabels[$index + 2] }}</div></div></div></div>");}]);
+angular.module("ionic-monthpicker").run(["$templateCache", function($templateCache) {$templateCache.put("monthpicker.html","<div><style>.month-cell {\n            border: 1px solid #ccc;\n            text-align: center;\n            padding: 10px;\n        }\n        .month-cell.dark {\n            background: #ddd;\n        }\n        .year {\n            font-size:30px;\n        }</style><div class=\"row year\"><div class=\"col col-25\" ng-click=\"changeYear(-1)\"><i class=\"ion ion-chevron-left\"></i></div><div class=\"col col-50 text-center\"><strong>{{ selection.year }}</strong></div><div class=\"col col-25 text-right\" ng-click=\"changeYear(1)\"><i class=\"ion ion-chevron-right\"></i></div></div><div ng-repeat=\"month in monthLabels\"><div class=\"row\" ng-if=\"$index % 3 == 0\" style=\"padding:0\"><div class=\"col col-33 month-cell\" ng-class=\"{dark: ! isValidMonth($index)}\" ng-click=\"selectMonth($index)\">{{ monthLabels[$index] }}</div><div class=\"col col-33 month-cell\" ng-class=\"{dark: ! isValidMonth($index + 1)}\" ng-click=\"selectMonth($index + 1)\">{{ monthLabels[$index + 1] }}</div><div class=\"col col-33 month-cell\" ng-class=\"{dark: ! isValidMonth($index + 2)}\" ng-click=\"selectMonth($index + 2)\">{{ monthLabels[$index + 2] }}</div></div></div></div>");}]);

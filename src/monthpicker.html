@@ -1,14 +1,33 @@
 <div>
-    <div class="row">
+    <style>
+        .month-cell {
+            border: 1px solid #ccc;
+            text-align: center;
+            padding: 10px;
+        }
+        .month-cell.dark {
+            background: #ddd;
+        }
+        .year {
+            font-size:30px;
+        }
+    </style>
+    <div class="row year">
         <div class="col col-25" ng-click="changeYear(-1)"><i class="ion ion-chevron-left"></i></div>
         <div class="col col-50 text-center"><strong>{{ selection.year }}</strong></div>
         <div class="col col-25 text-right"  ng-click="changeYear(1)"><i class="ion ion-chevron-right"></i></div>
     </div>
     <div ng-repeat="month in monthLabels">
-        <div class="row" ng-if="$index % 3 == 0">
-            <div class="col col-33 text-center" ng-click="selectMonth($index)">{{ monthLabels[$index] }}</div>
-            <div class="col col-33 text-center" ng-click="selectMonth($index + 1)">{{ monthLabels[$index + 1] }}</div>
-            <div class="col col-33 text-center" ng-click="selectMonth($index + 2)">{{ monthLabels[$index + 2] }}</div>
+        <div class="row" ng-if="$index % 3 == 0" style="padding:0;">
+            <div class="col col-33 month-cell" ng-class="{dark: ! isValidMonth($index)}" ng-click="selectMonth($index)">
+                {{ monthLabels[$index] }}
+            </div>
+            <div class="col col-33 month-cell" ng-class="{dark: ! isValidMonth($index + 1)}" ng-click="selectMonth($index + 1)">
+                {{ monthLabels[$index + 1] }}
+            </div>
+            <div class="col col-33 month-cell" ng-class="{dark: ! isValidMonth($index + 2)}" ng-click="selectMonth($index + 2)">
+                {{ monthLabels[$index + 2] }}
+            </div>
         </div>
     </div>
 </div>
