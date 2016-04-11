@@ -60,7 +60,6 @@
                  */
                 scope.selectMonth = function(index) {
                     if (scope.isValidMonth(index)) {
-                        console.log("valid");
                         scope.selection.month = index;
                         popup.close();
                     }
