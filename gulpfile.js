@@ -45,3 +45,5 @@ gulp.task('templates', function () {
 gulp.task('watch', function() {
     gulp.watch('./src/*', ['build', 'buildmin']);
 });
+
+gulp.task('default', ['build','buildmin']);

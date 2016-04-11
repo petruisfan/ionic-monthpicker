@@ -51,7 +51,6 @@
                         ( index > scope.maxMonthIndex && scope.selection.year == scope.maxYear) ||
                         scope.selection.year < scope.minYear ||
                         scope.selection.year > scope.maxYear;
-                    console.log(invalid);
                     return ! invalid;
                 }
             },
@@ -66,7 +65,6 @@
                  */
                 scope.selectMonth = function(index) {
                     if (scope.isValidMonth(index)) {
-                        console.log("valid");
                         scope.selection.month = index;
                         popup.close();
                     }
