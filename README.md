@@ -39,6 +39,7 @@ angular.module('app', ['ionic', 'ionic-monthpicker'])
 |minYear | int | new Date().getFullYear() | Minimum year |
 |maxMonthIndex | int | new Date().getMonth() | Maximum month index |
 |maxYear | int | new Date().getFullYear() | Maximum year | 
+|startingYear | int | maxYear | Set the starting year |
 |monthLabels | array | ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Now', 'Dec'] | Month labels to display |
 |title | string | "Select month" | Popup title |
 |cancelText | string | "Cancel" | Cancel button text |
