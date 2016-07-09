@@ -20,7 +20,7 @@
                 scope.maxMonthIndex = options.maxMonthIndex || new Date().getMonth();
                 scope.maxYear = options.maxYear || new Date().getFullYear();
 
-                scope.monthLabels = options.monthLabels || ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Now', 'Dec'];
+                scope.monthLabels = options.monthLabels || ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
                 scope.title = options.title || "Select month";
                 scope.cancelText = options.cancelText || "Cancel";
                 //
