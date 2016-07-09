@@ -42,3 +42,4 @@ angular.module('app', ['ionic', 'ionic-monthpicker'])
 |monthLabels | array | ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Now', 'Dec'] | Month labels to display |
 |title | string | "Select month" | Popup title |
 |cancelText | string | "Cancel" | Cancel button text |
+|cancelClass | string | "button-assertive" | Class to apply to the cancel button |

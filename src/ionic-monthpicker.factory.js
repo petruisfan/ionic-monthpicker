@@ -23,6 +23,7 @@
                 scope.monthLabels = options.monthLabels || ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Now', 'Dec'];
                 scope.title = options.title || "Select month";
                 scope.cancelText = options.cancelText || "Cancel";
+                scope.cancelClass = options.cancelClass || 'button-assertive';
                 //
                 // What user selects
                 //
@@ -74,7 +75,7 @@
                     buttons: [
                         {
                             text: scope.cancelText,
-                            type: 'button-assertive'
+                            type: scope.cancelClass
                         }
                     ]
                 });
