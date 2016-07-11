@@ -1,6 +1,6 @@
 {
   "name": "ionic-monthpicker",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Ionic monthpicker",
   "main": "gulpfile.js",
   "scripts": {
@@ -20,6 +20,9 @@
     "year"
   ],
   "author": "Petru Isfan",
+  "contributors": [
+    "Luke Ehresman <luke@ehresman.org>"
+  ],
   "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/petruisfan/ionic-monthpicker/issues"
