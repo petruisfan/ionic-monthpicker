@@ -29,7 +29,7 @@
                 //
                 scope.selection = {};
 
-                scope.selection.year = scope.maxYear;
+                scope.selection.year = options.startingYear || scope.maxYear;
                 /**
                  * Arrow buttons
                  * @param index
