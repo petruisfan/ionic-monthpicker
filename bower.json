@@ -1,7 +1,7 @@
 {
   "name": "ionic-monthpicker",
   "description": "Ionic monthpicker",
-  "main": "gulpfile.js",
+  "main": "./dist/ionic-monthpicker.min.js",
   "authors": [
     "Petru Isfan"
   ],
