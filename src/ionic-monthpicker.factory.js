@@ -17,6 +17,7 @@
                 //
                 scope.minMonthIndex = options.minMonthIndex || 0;
                 scope.minYear = options.minYear || new Date().getFullYear();
+
                 scope.maxMonthIndex = options.maxMonthIndex === undefined?new Date().getMonth():options.maxMonthIndex;
 
                 scope.maxYear = options.maxYear || new Date().getFullYear();
