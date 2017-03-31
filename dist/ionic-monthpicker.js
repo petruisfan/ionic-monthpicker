@@ -22,7 +22,8 @@
                 //
                 scope.minMonthIndex = options.minMonthIndex || 0;
                 scope.minYear = options.minYear || new Date().getFullYear();
-                scope.maxMonthIndex = options.maxMonthIndex || new Date().getMonth();
+                scope.maxMonthIndex = options.maxMonthIndex === undefined?new Date().getMonth():options.maxMonthIndex;
+
                 scope.maxYear = options.maxYear || new Date().getFullYear();
 
                 scope.monthLabels = options.monthLabels || ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
@@ -32,9 +33,11 @@
                 //
                 // What user selects
                 //
-                scope.selection = {};
+                scope.selection = {
+                    year : options.startingYear || scope.maxYear,
+                    month : null // no month selected
+                };
 
-                scope.selection.year = options.startingYear || scope.maxYear;
                 /**
                  * Arrow buttons
                  * @param index
@@ -86,7 +89,11 @@
                 });
 
                 popup.then(function(res) {
-                    callback(scope.selection);
+                    //return clone obj not internal private obj
+                    callback({
+                        year : scope.selection.year,
+                        month : scope.selection.month
+                    });
                 });
             }
         };
