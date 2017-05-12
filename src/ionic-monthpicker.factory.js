@@ -79,12 +79,18 @@
                     buttons: [
                         {
                             text: scope.cancelText,
-                            type: scope.cancelClass
+                            type: scope.cancelClass,
+                            onTap: function(e){
+                              return true;
+                            }
                         }
                     ]
                 });
 
                 popup.then(function(res) {
+                  if(res){
+                    return null;
+                  }                  
                     //return clone obj not internal private obj
                     callback({
                         year : scope.selection.year,
